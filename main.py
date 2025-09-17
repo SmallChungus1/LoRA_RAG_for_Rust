@@ -13,7 +13,7 @@ import argparse
 import os
 
 class course_rag():
-    def __init__(self, llm_model_name = "HuggingFaceTB/SmolLM2-1.7B-Instruct"
+    def __init__(self, llm_model_name = "HuggingFaceTB/SmolLM-360M-Instruct"
 , embedding_model_name = "BAAI/bge-small-en", persist_directory = "./chroma_langchain_db"):
         
         self.persist_directory = persist_directory
