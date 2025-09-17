@@ -1,6 +1,6 @@
 import transformers
 import torch 
-from langchain.prompts import ChatPromptTemplate
+from langchain.prompts import PromptTemplate
 from langchain_chroma import Chroma
 from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
 from langchain_community.embeddings import HuggingFaceBgeEmbeddings
@@ -13,9 +13,10 @@ import argparse
 import os
 
 class course_rag():
-    def __init__(self, llm_model_name = "HuggingFaceTB/SmolLM2-135M", embedding_model_name = "BAAI/bge-small-en", persist_directory = "./chroma_langchain_db"):
+    def __init__(self, llm_model_name = "HuggingFaceTB/SmolLM2-1.7B-Instruct"
+, embedding_model_name = "BAAI/bge-small-en", persist_directory = "./chroma_langchain_db"):
         
-
+        self.persist_directory = persist_directory
         #device setup source: https://python.langchain.com/docs/integrations/llms/huggingface_pipelines/
         device_name = "cuda" if torch.cuda.is_available() else ("mps" if torch.backends.mps.is_available() else "cpu")
         print(f"Using device: {device_name}")
@@ -33,8 +34,10 @@ class course_rag():
         self.vector_store = Chroma(
             collection_name="rag_collection",
             embedding_function=embedding_model,
-            persist_directory=persist_directory,  # Where to save data locally, remove if not necessary
+            persist_directory=self.persist_directory,  # Where to save data locally, remove if not necessary
         )
+        self.vector_store.reset_collection()
+
         # Retriever (MMR reduces redundancy)
         self.retriever = self.vector_store.as_retriever(
             search_type="mmr", search_kwargs={"k": 8, "fetch_k": 40, "lambda_mult": 0.5}
@@ -48,21 +51,18 @@ class course_rag():
             device_map="auto",
             torch_dtype=dtype,
         ).to(device_name)
-        hf_pipe = pipeline("text-generation", model=model, tokenizer=tokenizer, max_new_tokens=20, use_fast=True)
+        hf_pipe = pipeline("text-generation", model=model, tokenizer=tokenizer, max_new_tokens=512, use_fast=True, return_full_text=False)
         llm = HuggingFacePipeline(pipeline=hf_pipe)
         
         #chain setup
-        self.RAG_PROMPT = ChatPromptTemplate.from_messages([
-            ("system",
-             "You are an assistant for computer science. Answer only using the provided context. DO NOT HALLUCINATE. DO NOT MAKE UP ANY SOURCES. "
-             "If the answer is not in the context, say you don't know. "
-             "Cite snippets by their bracketed index like [1], [2]. "),
-            ("human",
-             "Question:\n{question}\n\n"
-             "Context snippets begins with index [number]:\n{context}\n\n"
-             "Include any citations by index.\n\n"
-             "Answer:")
-        ])
+        self.RAG_PROMPT = PromptTemplate.from_template(
+            "You are a college computer science teacher.\n"
+            "you can use the context to help with answering. If unknown, say you don't know. DO NOT HALLUCINATE. DO NOT MAKE UP SOURCES.\n"
+            "Question:\n{question}\n\n"
+            "Context:\n{context}\n\n"
+            "Answer:"
+        )
+
 
         # Chain: retrieve -> format -> prompt -> llm -> string
         self.chain = (
@@ -92,14 +92,11 @@ class course_rag():
         '''turns all docs into single string for llm ingestion'''
         return "\n\n".join(f"[{i+1}] {d.page_content}" for i,d in enumerate(docs, start=1))
 
+    def populate_vector_store(self, docs):
+        self.vector_store.add_documents(docs)
+
     def ask(self, question):
         return self.chain.invoke(question) #question and not {'question': question} because of RunnablePassthrough
-
-    ###chroma db supporting functions
-    def delete_all_chroma_collections(self):
-        for collection_name in self.vector_store.list_collections():
-            self.vector_store.delete_collection(collection_name)
-            print(f"Collection {collection_name} deleted.")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Course RAG")
