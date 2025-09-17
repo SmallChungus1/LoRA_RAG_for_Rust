@@ -1,0 +1,6 @@
+llm:
+"HuggingFaceTB/SmolLM3-3B"
+"HuggingFaceTB/SmolLM2-135M"
+
+embedding:
+"BAAI/bge-small-en"
