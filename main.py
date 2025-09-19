@@ -13,8 +13,8 @@ import argparse
 import os
 
 class course_rag():
-    def __init__(self, llm_model_name = "HuggingFaceTB/SmolLM-360M-Instruct"
-, embedding_model_name = "BAAI/bge-small-en", persist_directory = "./chroma_langchain_db"):
+    def __init__(self, llm_model_name = "Qwen/Qwen3-0.6B"
+, embedding_model_name = "BAAI/bge-small-en", persist_directory = "./chroma_langchain_db", max_tokens = 200):
         
         self.persist_directory = persist_directory
         #device setup source: https://python.langchain.com/docs/integrations/llms/huggingface_pipelines/
@@ -51,7 +51,7 @@ class course_rag():
             device_map="auto",
             torch_dtype=dtype,
         ).to(device_name)
-        hf_pipe = pipeline("text-generation", model=model, tokenizer=tokenizer, max_new_tokens=512, use_fast=True, return_full_text=False)
+        hf_pipe = pipeline("text-generation", model=model, tokenizer=tokenizer, max_new_tokens=max_tokens, use_fast=True, return_full_text=False)
         llm = HuggingFacePipeline(pipeline=hf_pipe)
         
         #chain setup
