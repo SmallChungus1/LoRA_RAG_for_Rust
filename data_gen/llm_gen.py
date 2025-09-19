@@ -1,89 +1,42 @@
-"""
-Generate a mixed, tierless Rust QA dataset via OpenRouter based on 3 tiers of topics. 
-Tier1: foundational rust concepts. Tier2: intermediate rust concepts. Tier3: concurrency concepts.
+#!/usr/bin/env python3
+# Minimal OpenRouter → NDJSON Rust QA generator.
+# Output: each line is {"question":"...","answer":"..."} (no wrapper).
 
-Output format (JSONL):
-  {"question": "...", "answer": "..."}
-"""
-
-import os, json, random, time, requests, re
+import os, json, time, requests, random
 from dotenv import load_dotenv
+
 load_dotenv()
 
 API_KEY = os.getenv("OPENROUTER_API_KEY")
-if not API_KEY:
-    raise SystemExit("Please set OPENROUTER_API_KEY")
+MODEL   = os.getenv("OPENROUTER_MODEL")  # e.g., "openai/gpt-4o-mini" or your pick
+if not API_KEY or not MODEL:
+    raise SystemExit("Set OPENROUTER_API_KEY and OPENROUTER_MODEL in your env")
 
-MODEL = os.getenv("OPENROUTER_MODEL")
-if not MODEL:
-    raise SystemExit("Please set OPENROUTER_MODEL")
-
-OUT_PATH = "rust_qa_dataset.jsonl"
-
-# How many QAs (edit as you like)
-N_FOUNDATIONS = 10
-N_INTERMEDIATE = 8
-N_CONCURRENCY = 10
-
-TEMPERATURE = 0.7
+OUT     = "./data_gen/rust_qa_dataset_5k.jsonl"
+MODEL_MAX_TOKENS = 80000  # adjust to your model’s limit
+TOTAL   = 5000           # total pairs to generate
+BATCH   = 50            # pairs per request
+TEMP    = 0.4
 TIMEOUT = 60
-RETRIES = 3
-
-# --- topic pools (we sample from these; tiers are NOT emitted) ---
-FOUNDATIONS = [
-    "let vs let mut (tiny example)",
-    "ownership basics, moving a String",
-    "borrowing: &T vs &mut T",
-    "slices for strings and arrays",
-    "struct + method example",
-    "enums and match with Option",
-    "Result and ? operator",
-    "iterator map/filter/collect",
-    "modules and pub",
-    "string vs &str",
-]
-INTERMEDIATE = [
-    "lifetimes: function returning &str",
-    "impl with explicit lifetime when holding refs",
-    "trait bounds: a generic max_of",
-    "IntoIterator vs Iterator in for loops",
-    "custom iterator adaptor example",
-    "RefCell and interior mutability",
-    "Box vs Rc vs Arc tradeoffs",
-    "manual custom error type with Display",
-]
-CONCURRENCY = [
-    "threads + mpsc: send work and collect results",
-    "Arc<Mutex<_>> shared counter",
-    "explain Send vs Sync",
-    "thread::scope splitting borrows",
-    "async vs threads: when to choose",
-    "Tokio: concurrent HTTP GET skeleton",
-    "Arc<RwLock<T>> for read-heavy access",
-    "atomics: lock-free counter and Ordering",
-    "why Rc is not Send; fix with Arc",
-    "bounded channel and backpressure idea",
-]
-
-JSON_RE = re.compile(r"\{.*\}", re.S)
+RETRIES = 4              # simple retry
 
 SYSTEM = (
-    "You are a concise Rust tutor.\n"
-    "Return ONLY a single-line JSON object with keys 'question' and 'answer'.\n"
+    "You are a concise Rust tutor. Produce short, correct Q&A pairs across fundamentals, intermediate, and concurrency.\n"
+    "OUTPUT FORMAT: **NDJSON** — exactly N lines; each line is a compact JSON object with keys 'question' and 'answer'.\n"
     "Rules:\n"
-    " - No text before or after the JSON.\n"
-    " - No Markdown code fences anywhere.\n"
-    " - Escape ALL newlines in strings as \\n.\n"
-    " - Escape double quotes inside strings as \\\".\n"
-    " - Keep it short; one minimal Rust snippet is OK inside 'answer'.\n"
+    "- Output ONLY NDJSON (no preface/trailer text).\n"
+    "- No Markdown fences around the NDJSON.\n"
+    "- Prefer std; include a tiny ```rust code block``` inside 'answer' only when helpful.\n"
+    "- Escape newlines inside strings as \\n."
 )
 
-USER_TEMPLATE = (
-    "Create ONE Rust Q&A pair about: {topic}\n"
-    "Output strictly as ONE LINE of JSON in (question, answer) format\n"
+USER_TPL = (
+    "Generate {n} diverse Rust Q&A pairs (mixed difficulty: fundamentals, intermediate, concurrency).\n"
+    "Return EXACTLY {n} lines of NDJSON. Each line must be a single JSON object of question answer pairs like: (question:answer)\n"
+    "Do not wrap in an array. No extra lines or commentary."
 )
 
-def call_openrouter(system: str, user: str) -> str:
+def call_openrouter(n: int) -> str:
     url = "https://openrouter.ai/api/v1/chat/completions"
     headers = {
         "Authorization": f"Bearer {API_KEY}",
@@ -91,69 +44,59 @@ def call_openrouter(system: str, user: str) -> str:
     }
     payload = {
         "model": MODEL,
-        "temperature": TEMPERATURE,
+        "temperature": TEMP,
         "messages": [
-            {"role":"system","content": system},
-            {"role":"user","content": user},
+            {"role": "system", "content": SYSTEM},
+            {"role": "user",   "content": USER_TPL.format(n=n)},
         ],
-        # If the model supports it, this *greatly* reduces parse issues:
-        "response_format": {"type": "json_object"},
-        # Optional: cap tokens to avoid verbose answers
-        "max_tokens": 400,
+        # Keep it simple; many providers handle arrays better than NDJSON,
+        # but NDJSON makes our parsing trivial. No response_format used.
+        "max_tokens": MODEL_MAX_TOKENS,   # adjust to your model’s limit
     }
     r = requests.post(url, headers=headers, json=payload, timeout=TIMEOUT)
     r.raise_for_status()
-    data = r.json()
-    return data["choices"][0]["message"]["content"]
+    return r.json()["choices"][0]["message"]["content"]
 
-def extract_json_object(text: str):
-    m = JSON_RE.search(text)
-    if not m: return None
-    blob = m.group(0).strip()
-    try:
-        return json.loads(blob)
-    except json.JSONDecodeError:
-        return None
-
-def make_samples(topics, n, out_list):
-    # sample with wrap-around if n > len(topics)
-    pool = topics[:]
-    random.shuffle(pool)
-    if n > len(pool):
-        pool = (pool * ((n + len(pool) - 1) // len(pool)))[:n]
-    else:
-        pool = pool[:n]
-
-    for i, topic in enumerate(pool, 1):
-        for attempt in range(1, RETRIES + 1):
-            try:
-                content = call_openrouter(SYSTEM, USER_TEMPLATE.format(topic=topic))
-                obj = extract_json_object(content)
-                if not obj or "question" not in obj or "answer" not in obj:
-                    raise ValueError("model did not return valid {question, answer} JSON")
-                # minimal cleanup: ensure strings
-                q = str(obj["question"]).strip()
-                a = str(obj["answer"]).strip()
-                out_list.append({"question": q, "answer": a})
-                print(f"[ok] {topic}")
-                break
-            except Exception as e:
-                print(f"[retry {attempt}] {topic}: {e}")
-                time.sleep(2.0 * attempt)
-        else:
-            print(f"[skip] {topic}")
+def parse_ndjson(text: str):
+    """Yield dicts from NDJSON content; skip bad lines quietly."""
+    for line in text.splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        try:
+            obj = json.loads(line)
+            q, a = obj.get("question"), obj.get("answer")
+            if isinstance(q, str) and isinstance(a, str) and q.strip() and a.strip():
+                yield {"question": q.strip(), "answer": a.strip()}
+        except json.JSONDecodeError:
+            # Skip malformed lines; keep it simple.
+            continue
 
 def main():
+    os.makedirs(os.path.dirname(OUT), exist_ok=True)
+    written = 0
     random.seed(42)
-    out = []
-    make_samples(FOUNDATIONS, N_FOUNDATIONS, out)
-    make_samples(INTERMEDIATE, N_INTERMEDIATE, out)
-    make_samples(CONCURRENCY, N_CONCURRENCY, out)
-    random.shuffle(out)  # mixed, tierless
-    with open(OUT_PATH, "w", encoding="utf-8") as f:
-        for row in out:
-            f.write(json.dumps(row, ensure_ascii=False) + "\n")
-    print(f"\nWrote {len(out)} QAs to {OUT_PATH}")
+
+    with open(OUT, "w", encoding="utf-8") as f:
+        while written < TOTAL:
+            need = min(BATCH, TOTAL - written)
+            for attempt in range(1, RETRIES + 1):
+                try:
+                    raw = call_openrouter(need)
+                    count_before = written
+                    for item in parse_ndjson(raw):
+                        f.write(json.dumps(item, ensure_ascii=False) + "\n")
+                        written += 1
+                        if written >= TOTAL:
+                            break
+                    print(f"[ok] wrote {written - count_before}, total {written}/{TOTAL}")
+                    break
+                except Exception as e:
+                    print(f"[retry {attempt}] {e}")
+                    time.sleep(2.0 * attempt)
+            else:
+                print("[skip] batch failed; continuing...")
+    print(f"Done: {written} lines → {OUT}")
 
 if __name__ == "__main__":
     main()

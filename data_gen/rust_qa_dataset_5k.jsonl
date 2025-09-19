@@ -1,0 +1,546 @@
+{"question": "What is the syntax for declaring a variable in Rust?", "answer": "let x = 5;"}
+{"question": "How do you declare a mutable variable in Rust?", "answer": "let mut x = 5;"}
+{"question": "What is the difference between 'let' and 'const'?", "answer": "'const' is a compile-time constant, while 'let' is a variable. 'const' requires a type annotation."}
+{"question": "What is the purpose of 'match' in Rust?", "answer": "To destructure and compare values against patterns."}
+{"question": "How do you create a new thread in Rust?", "answer": "use std::thread; thread::spawn(|| { /* code */ });"}
+{"question": "What is the 'Option' type used for?", "answer": "To represent optional values (Some(T) or None)."}
+{"question": "How to handle panics in Rust?", "answer": "Use 'panic!' macro. To recover, use 'catch_unwind' from std::panic."}
+{"question": "What is a 'struct' in Rust?", "answer": "A custom data type with named fields."}
+{"question": "How to define a function in Rust?", "answer": "fn function_name(parameters) -> return_type { /* code */ }"}
+{"question": "What is the 'Result' type used for?", "answer": "To handle success or error outcomes (Ok(T) or Err(E))."}
+{"question": "How to use a closure in Rust?", "answer": "|args| { /* code */ } or as a function parameter."}
+{"question": "What is the 'Rc' smart pointer for?", "answer": "To enable multiple ownership via reference counting."}
+{"question": "How to create a vector in Rust?", "answer": "let v = vec![1, 2, 3]; or Vec::new()"}
+{"question": "What is the 'Box' type used for?", "answer": "To allocate data on the heap."}
+{"question": "How to implement a trait in Rust?", "answer": "impl TraitName for Type { /* method implementations */ }"}
+{"question": "What is the 'self' keyword in method definitions?", "answer": "Refers to the instance of the type the method is called on."}
+{"question": "How to use 'if let' for pattern matching?", "answer": "if let Some(x) = value { /* handle Some */ } else { /* handle None */ }"}
+{"question": "What is the 'lifetime' annotation in Rust?", "answer": "To specify how long references are valid."}
+{"question": "How to create a new String in Rust?", "answer": "let s = String::new(); or String::from(\"text\");"}
+{"question": "What is the 'as' keyword used for?", "answer": "For type casting, e.g., 5 as u8."}
+{"question": "How to use 'use' to bring modules into scope?", "answer": "use module::item; or use module::*;"}
+{"question": "What is the 'pub' keyword for?", "answer": "To make items public (visible outside the module)."}
+{"question": "How to handle errors with 'Result'?", "answer": "Use '?' operator or match on Ok/Err."}
+{"question": "What is the 'drop' trait used for?", "answer": "To define custom cleanup logic for a type."}
+{"question": "How to create an array in Rust?", "answer": "let a = [1, 2, 3]; or [0; 5] for initialized arrays."}
+{"question": "What is the 'self' keyword in trait methods?", "answer": "Refers to the implementor type when calling trait methods."}
+{"question": "How to use 'Arc' for thread-safe reference counting?", "answer": "use std::sync::Arc; let arc = Arc::new(data);"}
+{"question": "What is the 'enum' type in Rust?", "answer": "A type that can have multiple variants."}
+{"question": "How to pass a closure to a function?", "answer": "fn take_closure<F>(f: F) where F: Fn() { f(); }"}
+{"question": "What is the 'as_ref' method for?", "answer": "Converts a Box<T> to a &T."}
+{"question": "How to use 'thread::join' in Rust?", "answer": "let handle = thread::spawn(...); handle.join().unwrap();"}
+{"question": "What is the 'derive' attribute used for?", "answer": "Automatically generates implementations for traits like Debug, Clone."}
+{"question": "How to create a slice in Rust?", "answer": "&array[0..2] or &string[0..2]"}
+{"question": "What is the 'match' arm syntax?", "answer": "Pattern => expression"}
+{"question": "How to use 'Result::ok' and 'Result::err'?", "answer": "Extracts the Ok or Err value, respectively."}
+{"question": "What is the 'lifetime' elision rule?", "answer": "Rust infers lifetimes in common cases, e.g., function parameters."}
+{"question": "How to use 'Vec::push'?", "answer": "v.push(value);"}
+{"question": "What is the 'static' keyword in Rust?", "answer": "Indicates a reference that lives for the entire program."}
+{"question": "How to use 'thread::scope'?", "answer": "fn main() { thread::scope(|s| { s.spawn(|| { /* code */ }); }); }"}
+{"question": "What is the 'as_mut' method for?", "answer": "Converts a Box<T> to a &mut T."}
+{"question": "How to use 'Result::map'?", "answer": "transforms the Ok value while preserving the Err."}
+{"question": "What is the 'Send' trait?", "answer": "Marks types that can be safely sent between threads."}
+{"question": "How to use 'Option::unwrap'?", "answer": "Returns the Some value or panics if None."}
+{"question": "What is the 'Sync' trait?", "answer": "Marks types that can be safely shared between threads."}
+{"question": "How to use 'thread::Builder'?", "answer": "thread::Builder::new().spawn(|| { /* code */ }).unwrap();"}
+{"question": "What is the 'lifetime' parameter in function signatures?", "answer": "Specifies the relationship between references, e.g., fn foo<'a>(x: &'a str) -> &'a str"}
+{"question": "How to use 'Vec::pop'?", "answer": "v.pop(); returns Some(value) or None if empty."}
+{"question": "What is the 'RefCell' type used for?", "answer": "Runtime borrow checking for interior mutability."}
+{"question": "How to use 'Result::and' and 'Result::or'?", "answer": "Chains operations, e.g., ok_result.and(another_result)"}
+{"question": "What is the 'thread_local!' macro?", "answer": "Declares a thread-local variable."}
+{"question": "How to use 'Option::map'?", "answer": "Transforms Some value, returns None if original is None."}
+{"question": "What is the 'Mutex' type in Rust?", "answer": "Provides mutual exclusion for shared data."}
+{"question": "How to use 'thread::current'?", "answer": "Returns the current thread's handle."}
+{"question": "What is the 'Box::new'?", "answer": "Allocates a value on the heap."}
+{"question": "How to use 'Result::expect'?", "answer": "Returns the Ok value or panics with a message."}
+{"question": "What is the 'Rc::clone'?", "answer": "Increments the reference count of an Rc."}
+{"question": "How to use 'Vec::len'?", "answer": "v.len(); returns the number of elements."}
+{"question": "What is the 'lifetime' of a reference?", "answer": "The period during which the reference is valid."}
+{"question": "How to use 'Option::unwrap_or'?", "answer": "Returns Some value or a default if None."}
+{"question": "What is the 'thread::sleep'?", "answer": "use std::thread; use std::time::Duration; thread::sleep(Duration::from_secs(1));"}
+{"question": "How to use 'Result::and_then'?", "answer": "Chains operations, e.g., ok_result.and_then(|x| Ok(x + 1))"}
+{"question": "What is the 'Send' trait's purpose?", "answer": "Ensures a type can be safely sent to another thread."}
+{"question": "How to use 'Vec::clear'?", "answer": "v.clear(); removes all elements."}
+{"question": "What is the 'Sync' trait's purpose?", "answer": "Ensures a type can be safely shared between threads."}
+{"question": "How to use 'thread::available_parallelism'?", "answer": "Returns the number of logical cores available."}
+{"question": "What is the 'RefCell' borrow checker?", "answer": "Checks borrows at runtime, not compile time."}
+{"question": "How to use 'Option::filter'?", "answer": "Returns Some if the closure returns true, else None."}
+{"question": "What is the 'MutexGuard' type?", "answer": "A guard that allows access to a Mutex's inner value."}
+{"question": "How to use 'Result::map_err'?", "answer": "Transforms the Err value while preserving the Ok."}
+{"question": "What is the 'thread::spawn' closure's move keyword?", "answer": "Moves ownership of variables into the thread."}
+{"question": "How to use 'Vec::extend'?", "answer": "v.extend(iterable); adds elements from an iterator."}
+{"question": "What is the 'lifetime' parameter in struct definitions?", "answer": "Specifies how long references in the struct are valid."}
+{"question": "How to use 'Option::and'?", "answer": "Returns None if original is None, else the other Option."}
+{"question": "What is the 'OnceLock' type?", "answer": "A thread-safe once-initialized value."}
+{"question": "How to use 'Result::unwrap_or_default'?", "answer": "Returns Ok value or the default if Err."}
+{"question": "What is the 'thread::panicking' function?", "answer": "Returns true if the current thread is panicking."}
+{"question": "How to use 'Vec::iter'?", "answer": "v.iter(); returns an iterator over &T."}
+{"question": "What is the 'lifetime' of a function's return value?", "answer": "Must be valid for at least the shortest lifetime of its inputs."}
+{"question": "How to use 'Option::or'?", "answer": "Returns the Option if Some, else the other Option."}
+{"question": "What is the 'Mutex' type's 'lock' method?", "answer": "Returns a MutexGuard, which must be released to unlock."}
+{"question": "How to use 'Result::into_ok'?", "answer": "Extracts the Ok value or panics if Err."}
+{"question": "What is the 'thread::Builder::name'?", "answer": "Sets the thread's name for debugging."}
+{"question": "How to use 'Vec::into_iter'?", "answer": "Consumes the Vec and returns an iterator over T."}
+{"question": "What is the 'lifetime' of a static variable?", "answer": "It lives for the entire program duration."}
+{"question": "How to use 'Option::xor'?", "answer": "Returns Some if exactly one of the Options is Some."}
+{"question": "What is the 'Arc' type's 'clone' method?", "answer": "Increments the reference count."}
+{"question": "How to use 'Result::is_ok'?", "answer": "Checks if the Result is Ok."}
+{"question": "What is the 'thread::yield_now' function?", "answer": "Yields the current thread to the scheduler."}
+{"question": "How to use 'Vec::reserve'?", "answer": "v.reserve(10); preallocates space for elements."}
+{"question": "What is the 'lifetime' of a function's parameter?", "answer": "Must be valid for the function's execution."}
+{"question": "How to use 'Option::take'?", "answer": "Removes the Some value and returns it."}
+{"question": "What is the 'OnceCell' type?", "answer": "A thread-safe once-initialized value."}
+{"question": "How to use 'Result::is_err'?", "answer": "Checks if the Result is Err."}
+{"question": "What is the 'thread::scoped' function?", "answer": "Creates a thread that is joined automatically."}
+{"question": "How to use 'Vec::shrink_to_fit'?", "answer": "v.shrink_to_fit(); reduces capacity to match length."}
+{"question": "What is the 'lifetime' of a function's return value?", "answer": "Must be valid for at least the shortest lifetime of its inputs."}
+{"question": "How to use 'Option::flatten'?", "answer": "Flattens nested Options into a single Option."}
+{"question": "What is the 'Mutex' type's 'try_lock' method?", "answer": "Returns None if the lock is already held, else a MutexGuard."}
+{"question": "How to use 'Result::and' and 'Result::or' for chaining?", "answer": "Result::and(Ok(42)) returns Ok(42), Result::or(Err(\"msg\")) returns Err(\"msg\")"}
+{"question": "What is the difference between let and const in Rust?", "answer": "`let` declares variables, `const` defines constants. `const` requires type annotation and is evaluated at compile-time."}
+{"question": "How do you declare a mutable variable in Rust?", "answer": "Use `let mut` followed by the variable name. Example: ```rust\nlet mut x = 5;\n```"}
+{"question": "What is the purpose of the match expression in Rust?", "answer": "To handle multiple possible values of an expression, providing a way to match patterns and execute code accordingly."}
+{"question": "Explain the concept of ownership in Rust.", "answer": "Ownership governs memory management. Each value has a single owner, and when the owner goes out of scope, the value is dropped."}
+{"question": "What are the three types of data types in Rust?", "answer": "Scalar (integers, floats, booleans, chars), compound (arrays, tuples), and reference types (references, slices)."}
+{"question": "How do you create a new thread in Rust?", "answer": "Use `std::thread::spawn`. Example: ```rust\nstd::thread::spawn(|| { /* code */ });\n```"}
+{"question": "What is the difference between a vector and an array in Rust?", "answer": "Vectors are dynamic and growable, while arrays have fixed size and are stored on the stack."}
+{"question": "How does Rust handle memory safety without a garbage collector?", "answer": "Through ownership and borrowing system, ensuring that references are always valid and memory is freed when no longer needed."}
+{"question": "What is a closure in Rust?", "answer": "A function-like structure that can capture variables from its environment. Syntax: `|x| x + 1`."}
+{"question": "How do you handle errors in Rust?", "answer": "Using the `Result` and `Option` types, along with `match` or `if let` for handling outcomes."}
+{"question": "What is the purpose of the 'Send' trait in Rust?", "answer": "It indicates that a type can be safely sent between threads. Types implementing `Send` can be moved to another thread."}
+{"question": "How do you share data between threads in Rust?", "answer": "Use `Arc` (Atomic Reference Counted) with `Mutex` or `RwLock` for thread-safe access. Example: ```rust\nlet data = Arc::new(Mutex::new(0));\n```"}
+{"question": "What is the 'JoinHandle' in Rust threads?", "answer": "It allows waiting for a thread to finish. Call `.join()` on it to block until the thread completes."}
+{"question": "How do you use async/await in Rust?", "answer": "Define an `async` function, then use `await` to pause execution. Requires an async runtime like `tokio`."}
+{"question": "What is a channel in Rust's concurrency model?", "answer": "A way to send messages between threads. Use `std::sync::mpsc::channel()` for multiple producer, single consumer."}
+{"question": "What is the difference between a struct and a tuple in Rust?", "answer": "A struct has named fields, while a tuple has unnamed fields. Example: `struct Point { x: i32, y: i32 }` vs tuple `(i32, i32)`."}
+{"question": "How do you implement a trait for a type in Rust?", "answer": "Use the `impl` block. Example: ```rust\nimpl MyTrait for MyType { ... }\n```"}
+{"question": "What is the purpose of the 'use' keyword in Rust?", "answer": "To bring modules, functions, or types into scope. Example: ```rust\nuse std::collections::HashMap;\n```"}
+{"question": "How do you create a slice in Rust?", "answer": "Use a range with a reference. Example: ```rust\nlet slice = &arr[1..3];\n```"}
+{"question": "What is the 'match' arm in Rust?", "answer": "Each case in a `match` expression. Example: `match x { 1 => ..., _ => ... }`."}
+{"question": "How do you use the 'if let' construct in Rust?", "answer": "To handle `Option` or `Result` types with a single case. Example: ```rust\nif let Some(x) = value { ... }\n```"}
+{"question": "What is the 'where' clause in Rust used for?", "answer": "To specify trait bounds for generic types. Example: ```rust\nfn foo<T: Trait>(t: T) where T: AnotherTrait { ... }\n```"}
+{"question": "How do you create a new String in Rust?", "answer": "Using `String::new()` or `to_string()`. Example: ```rust\nlet s = String::new();\n```"}
+{"question": "What is the 'lifetime' annotation in Rust?", "answer": "To specify how long references are valid. Used in function parameters with references. Example: ```rust\nfn foo<'a>(x: &'a i32) -> &'a i32 { ... }\n```"}
+{"question": "How do you use the 'ref' keyword in pattern matching?", "answer": "To bind a reference to a value. Example: ```rust\nmatch x { ref y => ... }\n```"}
+{"question": "What is the 'RwLock' in Rust?", "answer": "A reader-writer lock that allows multiple readers or one writer. Used for thread-safe shared access."}
+{"question": "How do you handle panics in Rust?", "answer": "Using `panic!` macro or `catch_unwind`. Example: ```rust\nstd::panic::catch_unwind(|| { ... });\n```"}
+{"question": "What is the 'Option' type in Rust?", "answer": "Represents a value that may be present (`Some`) or absent (`None`). Used for optional values."}
+{"question": "How do you create a new enum in Rust?", "answer": "Using the `enum` keyword. Example: ```rust\nenum Color { Red, Green, Blue }\n```"}
+{"question": "What is the 'Result' type in Rust?", "answer": "Represents success (`Ok`) or failure (`Err`). Used for error-prone operations."}
+{"question": "How do you use the 'as_ref' method in Rust?", "answer": "Converts a value into a reference. Example: ```rust\nlet s = \"hello\".as_ref();\n```"}
+{"question": "What is the 'Box' type in Rust used for?", "answer": "To allocate data on the heap. Example: ```rust\nlet b = Box::new(5);\n```"}
+{"question": "How do you create a constant in Rust?", "answer": "Using the `const` keyword. Example: ```rust\nconst MAX: u8 = 255;\n```"}
+{"question": "What is the 'impl' block used for in Rust?", "answer": "To define methods for a type. Example: ```rust\nimpl MyStruct { fn my_method(&self) { ... } }\n```"}
+{"question": "What is the 'Rust' ownership system?", "answer": "Manages memory by assigning ownership of values to variables, ensuring no dangling pointers or memory leaks."}
+{"question": "How do you create a reference to a variable in Rust?", "answer": "Using the `&` operator. Example: ```rust\nlet x = 5; let y = &x;\n```"}
+{"question": "How do you use the 'unwrap' method in Rust?", "answer": "To get the value inside `Some` or `Ok`, panicking if it's `None` or `Err`. Example: ```rust\nlet x = option.unwrap();\n```"}
+{"question": "What is the 'Rust' borrow checker?", "answer": "A compiler component enforcing borrowing rules to prevent data races and ensure memory safety."}
+{"question": "How do you create a new array in Rust?", "answer": "Using `[value; length]` syntax. Example: ```rust\nlet arr = [0; 5];\n```"}
+{"question": "What is the 'Rust' 'self' keyword used for?", "answer": "In method definitions, refers to the instance of the type. Example: ```rust\nfn my_method(&self) { ... }\n```"}
+{"question": "How do you use the 'Rust' 'match' expression with enums?", "answer": "To handle each variant of an enum. Example: ```rust\nmatch color { Color::Red => ..., _ => ... }\n```"}
+{"question": "What is the 'Rust' 'pub' keyword used for?", "answer": "To make items public. Example: ```rust\npub fn my_function() { ... }\n```"}
+{"question": "How do you use the 'Rust' 'async' function?", "answer": "Define with `async` keyword, then `await` futures. Example: ```rust\nasync fn my_async() { ... }\n```"}
+{"question": "What is the 'Rust' 'move' keyword in closures?", "answer": "Forces the closure to take ownership of captured variables. Example: ```rust\nthread::spawn(move || { ... });\n```"}
+{"question": "How do you create a tuple in Rust?", "answer": "Using parentheses. Example: ```rust\nlet t = (1, \"hello\");\n```"}
+{"question": "What is the 'Rust' 'match' expression's 'wildcard' pattern?", "answer": "The `_` pattern matches any value. Example: ```rust\nmatch x { 1 => ..., _ => ... }\n```"}
+{"question": "How do you define a function in Rust?", "answer": "Using the `fn` keyword. Example: ```rust\nfn add(a: i32, b: i32) -> i32 { a + b }\n```"}
+{"question": "What is the 'Rust' 'as' keyword used for?", "answer": "To cast values between types. Example: ```rust\nlet x: i32 = 5 as i32;\n```"}
+{"question": "How do you handle multiple threads with a thread pool in Rust?", "answer": "Use `threadpool` crate or `std::thread::spawn` with a loop. Example: ```rust\nthreadpool::ThreadPool::new(4).execute(...);\n```"}
+{"question": "What is the 'Rust' 'lifetime' elision rules?", "answer": "Rules allowing the compiler to infer lifetimes in common cases, like when a function returns a reference."}
+{"question": "How do you create a new String from a string slice?", "answer": "Using `to_string()` or `String::from()`. Example: ```rust\nlet s = \"hello\".to_string();\n```"}
+{"question": "What is the 'Rust' 'static' keyword used for?", "answer": "To indicate a reference that lives for the entire program. Example: ```rust\nfn foo(x: &'static str) { ... }\n```"}
+{"question": "How do you use the 'Rust' 'ref mut' in pattern matching?", "answer": "To bind a mutable reference. Example: ```rust\nmatch x { ref mut y => ... }\n```"}
+{"question": "What is the 'Rust' 'unsafe' block?", "answer": "Allows bypassing safety checks. Used for low-level operations like raw pointers or calling unsafe functions."}
+{"question": "How do you create a new struct in Rust?", "answer": "Using `struct` keyword. Example: ```rust\nstruct Point { x: i32, y: i32 }\n```"}
+{"question": "What is the 'Rust' 'derive' attribute?", "answer": "Automatically implements traits for a type. Example: ```rust#[derive(Debug)]\nstruct MyStruct;\n```"}
+{"question": "How do you create a new HashMap in Rust?", "answer": "Using `HashMap::new()` or the `hashmap!` macro. Example: ```rust\nuse std::collections::HashMap;\nlet mut map = HashMap::new();\n```"}
+{"question": "What is the 'Rust' 'lifetime' parameter in function signatures?", "answer": "Specifies the relationship between references. Example: ```rust\nfn longest<'a>(s1: &'a str, s2: &'a str) -> &'a str { ... }\n```"}
+{"question": "How do you use the 'Rust' 'Result' type?", "answer": "To handle success or failure. Example: ```rust\nlet result: Result<i32, String> = Ok(5);\n```"}
+{"question": "What is the 'Rust' 'match' expression's 'exhaustive' requirement?", "answer": "All possible values must be covered. Use `_` as a fallback to ensure exhaustiveness."}
+{"question": "How do you create a new iterator in Rust?", "answer": "Using `iter()` or `into_iter()`. Example: ```rust\nfor item in vec.iter() { ... }\n```"}
+{"question": "What is the 'Rust' 'trait' system?", "answer": "Enables shared behavior across types. Define with `trait` keyword, implement with `impl` block."}
+{"question": "How do you use the 'Rust' 'Option' type?", "answer": "To represent optional values. Example: ```rust\nlet x: Option<i32> = Some(5);\n```"}
+{"question": "What is the 'Rust' 'lifetime' in function parameters?", "answer": "Specifies the scope of references. Example: ```rust\nfn print<'a>(s: &'a str) { ... }\n```"}
+{"question": "How do you create a new thread with a closure?", "answer": "Use `std::thread::spawn` with a closure. Example: ```rust\nstd::thread::spawn(|| { /* code */ });\n```"}
+{"question": "What is the 'Rust' 'Box' type?", "answer": "Allocates data on the heap. Example: ```rust\nlet b = Box::new(5);\n```"}
+{"question": "How do you handle a panic in Rust?", "answer": "Use `catch_unwind` or `panic!` macro. Example: ```rust\nstd::panic::catch_unwind(|| { ... });\n```"}
+{"question": "What is the 'Rust' 'Option::unwrap_or' method?", "answer": "Returns the value if `Some`, else the provided default. Example: ```rust\nlet x = option.unwrap_or(0);\n```"}
+{"question": "How do you create a new String from a format?", "answer": "Using `format!` macro. Example: ```rust\nlet s = format!(\"Hello, {}\", name);\n```"}
+{"question": "What is the 'Rust' 'RwLock' vs 'Mutex'?", "answer": "`RwLock` allows multiple readers or one writer, while `Mutex` allows only one writer at a time."}
+{"question": "How do you use the 'Rust' 'Result::ok' method?", "answer": "Converts `Result` to `Option`. Example: ```rust\nlet x = result.ok();\n```"}
+{"question": "What is the 'Rust' 'lifetime' in struct definitions?", "answer": "Specifies how long references in a struct live. Example: ```rust\nstruct Data<'a> { s: &'a str }\n```"}
+{"question": "How do you create a new array with initial values?", "answer": "Using `[value; length]` syntax. Example: ```rust\nlet arr = [1; 5]; // [1,1,1,1,1]\n```"}
+{"question": "What is the 'Rust' 'Arc' type?", "answer": "Atomic reference counting for thread-safe sharing. Example: ```rust\nlet data = Arc::new(0);\n```"}
+{"question": "How do you use the 'Rust' 'match' expression with a struct?", "answer": "Pattern match on struct fields. Example: ```rust\nmatch point { Point { x: 1, y: 2 } => ... }\n```"}
+{"question": "What is the 'Rust' 'lifetime' in function return types?", "answer": "Specifies the reference's validity. Example: ```rust\nfn get_str() -> &'static str { \"hello\" }\n```"}
+{"question": "How do you create a new Vec in Rust?", "answer": "Using `Vec::new()` or `vec!` macro. Example: ```rust\nlet v = Vec::new();\n```"}
+{"question": "What is the 'Rust' 'lifetime' in method signatures?", "answer": "Specifies reference lifetimes. Example: ```rust\nfn get(&self) -> &i32 { ... }\n```"}
+{"question": "How do you use the 'Rust' 'Result::expect' method?", "answer": "Returns the value or panics with a message. Example: ```rust\nlet x = result.expect(\"error message\");\n```"}
+{"question": "What is the 'Rust' 'Option::as_ref' method?", "answer": "Converts `Option<T>` to `Option<&T>`. Example: ```rust\nlet s = option.as_ref();\n```"}
+{"question": "How do you create a new thread with a value?", "answer": "Use `std::thread::spawn` with a closure. Example: ```rust\nstd::thread::spawn(move || { value });\n```"}
+{"question": "What is the 'Rust' 'Send' trait?", "answer": "Indicates a type can be safely sent between threads. Example: ```rust\nimpl Send for MyType { ... }\n```"}
+{"question": "How do you use the 'Rust' 'match' expression with a slice?", "answer": "Pattern match on slice elements. Example: ```rust\nmatch slice { [a, b, c] => ... }\n```"}
+{"question": "What is the 'Rust' 'lifetime' in function parameters?", "answer": "Specifies the scope of references. Example: ```rust\nfn process<'a>(s: &'a str) { ... }\n```"}
+{"question": "How do you create a new String with a capacity?", "answer": "Using `String::with_capacity`. Example: ```rust\nlet s = String::with_capacity(10);\n```"}
+{"question": "What is the 'Rust' 'RwLockReadGuard'?", "answer": "A guard returned by `RwLock::read()`. Ensures read-only access while held."}
+{"question": "How do you use the 'Rust' 'Option::map' method?", "answer": "Applies a function to the `Some` value. Example: ```rust\nlet x = option.map(|v| v * 2);\n```"}
+{"question": "What is the 'Rust' 'Box::leak' function?", "answer": "Leaks a `Box`, returning a reference with 'static lifetime. Example: ```rust\nlet s = Box::leak(Box::new(\"hello\"));\n```"}
+{"question": "How do you create a new thread with a return value?", "answer": "Use `std::thread::spawn` and `join()`. Example: ```rust\nlet handle = std::thread::spawn(|| 42);\nlet result = handle.join().unwrap();\n```"}
+{"question": "What is the 'Rust' 'Send' and 'Sync' traits?", "answer": "`Send` allows moving between threads, `Sync` allows shared access. Types implementing both are thread-safe."}
+{"question": "How do you handle a panic in an async function?", "answer": "Use `try_join!` or `catch_unwind`. Example: ```rust\nasync fn my_async() -> Result<(), Box<dyn Error>> { ... }\n```"}
+{"question": "What is the 'Rust' 'async' block?", "answer": "Creates a future. Example: ```rust\nlet future = async { ... };\n```"}
+{"question": "How do you use the 'Rust' 'await' keyword?", "answer": "Pauses execution until a future resolves. Example: ```rust\nlet result = future.await;\n```"}
+{"question": "What is the 'Rust' 'tokio' runtime?", "answer": "An asynchronous runtime for building async applications. Example: ```rust\n#[tokio::main]\nasync fn main() { ... }\n```"}
+{"question": "How do you create a channel in Rust?", "answer": "Use `std::sync::mpsc::channel()`. Example: ```rust\nlet (tx, rx) = std::sync::mpsc::channel();\n```"}
+{"question": "What is the 'Rust' 'crossbeam' crate used for?", "answer": "Provides thread-safe data structures and channels. Example: ```rust\nuse crossbeam::channel::unbounded;\n```"}
+{"question": "How do you use the 'Rust' 'Mutex' type?", "answer": "For thread-safe mutable access. Example: ```rust\nlet data = Mutex::new(0);\nlet mut data = data.lock().unwrap();\n```"}
+{"question": "What is the 'Rust' 'RwLock' type?", "answer": "Allows multiple readers or one writer. Example: ```rust\nlet data = RwLock::new(0);\nlet data = data.read().unwrap();\n```"}
+{"question": "How do you create a new thread with a closure that captures variables?", "answer": "Use `move` keyword. Example: ```rust\nstd::thread::spawn(move || { /* captures variables */ });\n```"}
+{"question": "What is the 'Rust' 'async' function's return type?", "answer": "A `Future` type. Example: ```rust\nasync fn my_async() -> i32 { ... }\n```"}
+{"question": "How do you use the 'Rust' 'try_join!' macro?", "answer": "Waits for multiple futures. Example: ```rust\ntry_join!(future1, future2);\n```"}
+{"question": "What is the 'Rust' 'select!' macro?", "answer": "Waits for any of multiple futures to complete. Example: ```rust\nselect! { ... }\n```"}
+{"question": "How do you use the 'Rust' 'join' method on a thread?", "answer": "Blocks until the thread finishes. Example: ```rust\nlet handle = std::thread::spawn(|| { ... });\nhandle.join().unwrap();\n```"}
+{"question": "What is the keyword for declaring a variable in Rust?", "answer": "let"}
+{"question": "How to create a mutable variable?", "answer": "let mut var = value;"}
+{"question": "What is the default integer type in Rust?", "answer": "i32"}
+{"question": "How to define a constant?", "answer": "const NAME: Type = value;"}
+{"question": "What is the purpose of the 'match' expression?", "answer": "To compare a value against patterns and execute code based on the matching pattern."}
+{"question": "How to create a new thread?", "answer": "std::thread::spawn(|| { /* code */ });"}
+{"question": "What is the 'Copy' trait?", "answer": "Allows a type to be copied instead of moved."}
+{"question": "What is a 'Vec' in Rust?", "answer": "A dynamic array type."}
+{"question": "How to handle errors using 'Result'?", "answer": "Use match or ? operator to propagate errors."}
+{"question": "What is the 'Option' enum used for?", "answer": "To represent values that may be absent."}
+{"question": "How to implement a trait for a struct?", "answer": "impl Trait for StructName { ... }"}
+{"question": "What is the 'self' keyword in method definitions?", "answer": "Refers to the instance of the struct."}
+{"question": "What is a 'struct' in Rust?", "answer": "A custom data type that can hold multiple values."}
+{"question": "How to define a function?", "answer": "fn function_name(parameters) -> return_type { ... }"}
+{"question": "What is the 'use' keyword for?", "answer": "To bring modules into scope."}
+{"question": "What is the 'pub' keyword used for?", "answer": "To make items public."}
+{"question": "How to create a slice?", "answer": "&array[start..end]"}
+{"question": "What is the 'lifetime' annotation?", "answer": "Specifies how long references are valid."}
+{"question": "What is the 'Box' type?", "answer": "A smart pointer for heap allocation."}
+{"question": "How to use a closure?", "answer": "|params| { body }"}
+{"question": "What is the 'Rust' ownership system?", "answer": "A set of rules that govern how memory is managed."}
+{"question": "What is the 'move' keyword in closures?", "answer": "Forces the closure to take ownership of captured variables."}
+{"question": "How to use 'if let'?", "answer": "To handle a single pattern match case."}
+{"question": "What is the 'Result' type?", "answer": "An enum representing success or error."}
+{"question": "What is the 'Drop' trait?", "answer": "Provides a way to run code when a value goes out of scope."}
+{"question": "How to use 'match' with enums?", "answer": "Pattern match on each variant."}
+{"question": "What is the 'as' keyword used for?", "answer": "For type casting or renaming imports."}
+{"question": "What is the 'static' keyword in Rust?", "answer": "Specifies a reference that lives for the entire program."}
+{"question": "How to create a tuple?", "answer": "(value1, value2, ...)"}
+{"question": "What is the 'RefCell' type?", "answer": "A way to have interior mutability."}
+{"question": "What is the 'Arc' type?", "answer": "A thread-safe reference-counted pointer."}
+{"question": "How to use 'iter()' on a Vec?", "answer": "To get an iterator over the elements."}
+{"question": "What is the 'Box::new()' function?", "answer": "Allocates a value on the heap."}
+{"question": "What is the 'pub use' statement?", "answer": "Re-exports a module under a different name."}
+{"question": "How to handle panics?", "answer": "Using 'panic!' or 'unwrap()'."}
+{"question": "What is the 'lifetime' elision rule?", "answer": "Rust infers lifetimes in common cases."}
+{"question": "What is the 'impl' block?", "answer": "Used to implement methods for a type."}
+{"question": "How to use 'match' with 'Some' and 'None'?", "answer": "To handle optional values."}
+{"question": "What is the 'as_ref()' method?", "answer": "Converts a Box to a reference."}
+{"question": "What is the 'Send' trait?", "answer": "Marks a type as safe to send between threads."}
+{"question": "How to define a function with a closure parameter?", "answer": "fn example<F>(f: F) where F: Fn() { f(); }"}
+{"question": "What is the 'Sync' trait?", "answer": "Marks a type as safe to share between threads."}
+{"question": "What is the 'Cow' type?", "answer": "A clone-on-write smart pointer."}
+{"question": "How to use 'thread::join()'?", "answer": "To wait for a thread to finish."}
+{"question": "What is the 'derive' attribute?", "answer": "Automatically implements traits for a struct."}
+{"question": "What is the 'lifetime' parameter in function signatures?", "answer": "Specifies the relationship between references."}
+{"question": "How to use 'Ref' and 'RefMut' with 'Rc'?", "answer": "Through 'Rc::clone()' and 'Rc::get_mut()'."}
+{"question": "What is the 'thread_local!' macro?", "answer": "Declares a thread-local variable."}
+{"question": "How to use 'crossbeam::channel' for concurrency?", "answer": "Use send() and recv() to communicate between threads."}
+{"question": "What is the 'once_cell' crate used for?", "answer": "Lazy initialization of static variables."}
+{"question": "How to use 'tokio::spawn' for async tasks?", "answer": "tokio::spawn(async { /* code */ });"}
+{"question": "What is the 'async' keyword?", "answer": "Declares an asynchronous function."}
+{"question": "How to await a future?", "answer": "Using 'await' inside an async function."}
+{"question": "What is the 'Future' trait?", "answer": "Represents a value that may become available later."}
+{"question": "How to use 'Mutex' for thread safety?", "answer": "Wrap data in Mutex and use lock() to access it."}
+{"question": "What is the 'RwLock' type?", "answer": "A read-write lock for concurrent access."}
+{"question": "How to use 'Once' for initialization?", "answer": "Use Once::new() and call call_once()."}
+{"question": "What is the 'thread::scoped' function?", "answer": "Creates a thread that can join with a lifetime."}
+{"question": "How to use 'crossbeam::scope' for scoped threads?", "answer": "crossbeam::scope(|s| { s.spawn(|| { /* code */ }); });"}
+{"question": "What is the 'std::sync::mpsc' module?", "answer": "Provides multi-producer, single-consumer channels."}
+{"question": "How to use 'Arc<Mutex<T>>' for shared mutability?", "answer": "Arc provides reference counting, Mutex ensures thread safety."}
+{"question": "What is the 'std::thread::available_parallelism()' function?", "answer": "Returns the number of available CPU cores."}
+{"question": "How to use 'std::future::Future' trait?", "answer": "Implement poll() to define asynchronous behavior."}
+{"question": "What is the 'std::pin::Pin' type?", "answer": "Ensures a value is not moved while referenced."}
+{"question": "How to use 'std::sync::Barrier' for synchronization?", "answer": "Call wait() on all threads to synchronize."}
+{"question": "What is the 'std::sync::Condvar' type?", "answer": "A condition variable for thread waiting."}
+{"question": "How to use 'std::sync::atomic' for atomic operations?", "answer": "Use types like AtomicUsize with load() and store()."}
+{"question": "What is the 'std::cell::Cell' type?", "answer": "Provides interior mutability without borrowing."}
+{"question": "How to use 'std::cell::RefCell' for runtime checks?", "answer": "Use borrow() and borrow_mut() for mutable access."}
+{"question": "What is the 'std::rc::Rc' type?", "answer": "A reference-counted pointer for single-threaded use."}
+{"question": "How to use 'std::rc::Weak' for non-owning references?", "answer": "Rc::downgrade() creates a Weak pointer."}
+{"question": "What is the 'std::boxed::Box' type?", "answer": "A smart pointer for heap allocation."}
+{"question": "How to use 'std::vec::Vec' for dynamic arrays?", "answer": "Vec<T> provides growable, heap-allocated arrays."}
+{"question": "What is the 'std::collections::HashMap' type?", "answer": "A key-value map with hash-based lookup."}
+{"question": "How to use 'std::collections::BTreeMap'?", "answer": "A sorted map implemented as a tree."}
+{"question": "What is the 'std::collections::HashSet' type?", "answer": "A collection of unique values with hash-based lookup."}
+{"question": "How to use 'std::collections::VecDeque'?", "answer": "A double-ended queue."}
+{"question": "What is the 'std::collections::LinkedList' type?", "answer": "A doubly linked list."}
+{"question": "How to use 'std::collections::BinaryHeap'?", "answer": "A max-heap implemented as a binary tree."}
+{"question": "What is the 'std::collections::HashMap::entry()' method?", "answer": "Allows checking and inserting entries efficiently."}
+{"question": "How to use 'std::collections::BTreeSet'?", "answer": "A sorted set implemented as a tree."}
+{"question": "What is the difference between let and const in Rust?", "answer": "let declares a variable, while const defines a constant. const requires a type annotation and is evaluated at compile-time."}
+{"question": "How do you declare a mutable variable?", "answer": "Use let mut followed by the variable name. Example: let mut x = 5;"}
+{"question": "What are the basic data types in Rust?", "answer": "Primitive types like i32, u32, f64, bool, char, and compound types like arrays, tuples, and structs."}
+{"question": "What is the purpose of the match expression?", "answer": "To handle multiple possible values of an expression with pattern matching."}
+{"question": "How to define a function?", "answer": "Use the fn keyword. Example: fn add(a: i32, b: i32) -> i32 { a + b }"}
+{"question": "What is a tuple?", "answer": "A collection of values with fixed size and mixed types. Example: (1, \"hello\")"}
+{"question": "What is a struct?", "answer": "A custom data type with named fields. Example: struct Point { x: i32, y: i32 }"}
+{"question": "What is the difference between a struct and an enum?", "answer": "Structs group data, enums represent a value that can be one of several variants."}
+{"question": "How to create a vector?", "answer": "Use Vec::new() or the vec! macro. Example: let v = vec![1, 2, 3];"}
+{"question": "What is the borrow checker?", "answer": "A Rust compiler component that enforces borrowing rules to prevent data races."}
+{"question": "How to implement a trait for a custom type?", "answer": "Use impl Trait for Type { ... }. Example: impl Display for Point { ... }"}
+{"question": "What are lifetimes and why are they important?", "answer": "Lifetimes ensure references are valid for the correct scope, preventing dangling references."}
+{"question": "What is a closure?", "answer": "An anonymous function that can capture its environment. Example: |x| x + 1"}
+{"question": "How to use the Option type?", "answer": "Option<T> represents a value that may be None. Use match or if let to handle it."}
+{"question": "What is the Result type used for?", "answer": "To handle operations that may succeed (Ok) or fail (Err)."}
+{"question": "How to create a custom module?", "answer": "Use the mod keyword. Example: mod my_module { ... }"}
+{"question": "What is the difference between pub and private?", "answer": "pub makes items accessible outside the module, private restricts access."}
+{"question": "How to use the match expression with enums?", "answer": "Pattern match each variant. Example: match result { Ok(v) => v, Err(e) => e }"}
+{"question": "What is the purpose of the 'use' keyword?", "answer": "To bring modules, types, or functions into scope. Example: use std::io::Read;"}
+{"question": "How to create a trait with associated functions?", "answer": "Define the trait with fn, then implement it for a type. Example: trait MyTrait { fn new() -> Self; }"}
+{"question": "What is the difference between a String and a &str?", "answer": "String is a heap-allocated, growable string; &str is a slice pointing to a string."}
+{"question": "How to use the if let syntax?", "answer": "Simplify matching a single pattern. Example: if let Some(x) = value { ... }"}
+{"question": "What is the purpose of the 'as' keyword?", "answer": "For type casting. Example: let x: i32 = 5 as i32;"}
+{"question": "How to handle panics in Rust?", "answer": "Use panic!() to cause a panic, or unwrap() to handle Option/Result."}
+{"question": "What is the difference between a function and a method?", "answer": "Methods are functions associated with a type via impl blocks, functions are standalone."}
+{"question": "What is the purpose of the Box type?", "answer": "Allocates data on the heap. Example: let b = Box::new(5);"}
+{"question": "How to use the derive macro?", "answer": "Add #[derive(...)] to a struct or enum. Example: #[derive(Debug)] struct Point;"}
+{"question": "What is the 'where' clause in traits?", "answer": "Specifies trait bounds for generic types. Example: fn foo<T: Trait + Clone> where T: Debug { ... }"}
+{"question": "How to implement a trait for multiple types?", "answer": "Use a trait implementation with a generic type. Example: impl<T> MyTrait for Vec<T> { ... }"}
+{"question": "What is the difference between a struct and a tuple struct?", "answer": "Structs have named fields; tuple structs have unnamed fields but can have names."}
+{"question": "How to use the 'self' keyword in methods?", "answer": "Refers to the current instance. Example: fn greet(&self) { ... }"}
+{"question": "What is the purpose of the 'panic!' macro?", "answer": "Causes the current thread to panic and unwind."}
+{"question": "How to handle errors with Result?", "answer": "Use match, if let, or the ? operator. Example: let data = file.read()?;"}
+{"question": "What is the 'as' keyword used for in pattern matching?", "answer": "To rename a matched value. Example: if let Some(x) = value.as_ref() { ... }"}
+{"question": "What is the difference between a thread and an async task?", "answer": "Threads are OS-level, async tasks are cooperative and managed by the runtime."}
+{"question": "How to create a thread?", "answer": "Use std::thread::spawn. Example: std::thread::spawn(|| { ... });"}
+{"question": "What is the purpose of the Send trait?", "answer": "Indicates a type can be safely sent between threads."}
+{"question": "What is the Sync trait?", "answer": "Indicates a type can be safely shared between threads."}
+{"question": "How to use channels for communication between threads?", "answer": "Use std::sync::mpsc::channel(). Example: let (tx, rx) = channel();"}
+{"question": "What is a Mutex and how is it used?", "answer": "A mutual exclusion lock. Use lock() to access the inner value. Example: let data = mutex.lock().unwrap();"}
+{"question": "What is an Arc and how does it work?", "answer": "A thread-safe reference-counted pointer. Use Arc::new() to create. Example: let arc = Arc::new(data);"}
+{"question": "How to handle thread safety with shared data?", "answer": "Use Arc<Mutex<T>> for shared ownership and mutual exclusion."}
+{"question": "What is async/await in Rust?", "answer": "Syntax for writing asynchronous code. Example: async fn main() { ... }"}
+{"question": "How to use the tokio runtime?", "answer": "Use #[tokio::main] for async functions. Example: tokio::main() async fn main() { ... }"}
+{"question": "What is the 'join' method on a thread?", "answer": "Waits for the thread to finish. Example: thread.join().unwrap();"}
+{"question": "What is the 'thread_local!' macro used for?", "answer": "Declares a thread-local variable. Example: thread_local! { static X: i32 = 0; }"}
+{"question": "How to use the 'once_cell' crate for lazy initialization?", "answer": "Use OnceCell::new() and get_or_init(). Example: let cell = OnceCell::new(); cell.get_or_init(|| 42);"}
+{"question": "What is the difference between a String and a Vec<u8>?", "answer": "String is a UTF-8 encoded, growable collection of characters; Vec<u8> is a byte buffer."}
+{"question": "How to create a slice?", "answer": "Use &array[start..end]. Example: let s = &arr[1..3];"}
+{"question": "What is the purpose of the 'ref' keyword in patterns?", "answer": "To borrow a reference instead of moving the value. Example: if let Some(ref x) = value { ... }"}
+{"question": "How to use the 'match' expression with a range?", "answer": "Use the ..= operator. Example: match x { 1..=5 => ... }"}
+{"question": "What is the 'Option::unwrap_or' method?", "answer": "Returns the value if Some, else the provided default. Example: let x = opt.unwrap_or(0);"}
+{"question": "How to use the 'Result::expect' method?", "answer": "Returns the value if Ok, else panics with a message. Example: let x = res.expect(\"error message\");"}
+{"question": "What is the 'as_ref' method for Option?", "answer": "Converts Some(T) to Some(&T). Example: opt.as_ref().map(|x| x.len())"}
+{"question": "How to use the 'Result::map' method?", "answer": "Applies a function to the Ok value. Example: res.map(|x| x * 2)"}
+{"question": "What is the 'Box::new' function?", "answer": "Allocates a value on the heap. Example: let b = Box::new(5);"}
+{"question": "How to use the 'Vec::push' method?", "answer": "Adds an element to the end. Example: let mut v = Vec::new(); v.push(1);"}
+{"question": "What is the 'Vec::iter' method?", "answer": "Returns an iterator over references. Example: for item in vec.iter() { ... }"}
+{"question": "How to use the 'Vec::into_iter' method?", "answer": "Consumes the vector and returns an iterator. Example: for item in vec.into_iter() { ... }"}
+{"question": "What is the 'Vec::retain' method?", "answer": "Keeps elements that satisfy a closure. Example: vec.retain(|x| *x > 0);"}
+{"question": "How to use the 'Vec::split_at_mut' method?", "answer": "Splits a vector into two mutable slices. Example: let (left, right) = vec.split_at_mut(2);"}
+{"question": "What is the 'Vec::resize' method?", "answer": "Changes the length of the vector. Example: vec.resize(5, 0);"}
+{"question": "How to use the 'Vec::drain' method?", "answer": "Removes and returns elements. Example: let drained = vec.drain(1..3);"}
+{"question": "What is the 'Vec::extend' method?", "answer": "Adds elements from an iterator. Example: vec.extend([1, 2, 3].iter());"}
+{"question": "How to use the 'Vec::into_boxed_slice' method?", "answer": "Converts a Vec to a Box<[T]>. Example: let boxed = vec.into_boxed_slice();"}
+{"question": "What is the 'Vec::clone' method?", "answer": "Creates a new Vec with copies of elements. Example: let new_vec = vec.clone();"}
+{"question": "How to use the 'Vec::swap' method?", "answer": "Exchanges two elements. Example: vec.swap(0, 1);"}
+{"question": "What is the 'Vec::reverse' method?", "answer": "Reverses the order of elements. Example: vec.reverse();"}
+{"question": "How to use the 'Vec::sort' method?", "answer": "Sorts elements in place. Example: vec.sort();"}
+{"question": "What is the 'Vec::binary_search' method?", "answer": "Finds an element using binary search. Example: let index = vec.binary_search(&x);"}
+{"question": "How to use the 'Vec::dedup' method?", "answer": "Removes consecutive duplicates. Example: vec.dedup();"}
+{"question": "What is the 'Vec::split_off' method?", "answer": "Splits the vector at a position, returning the second part. Example: let right = vec.split_off(2);"}
+{"question": "How to use the 'Vec::resize_with' method?", "answer": "Resizes the vector, initializing new elements with a closure. Example: vec.resize_with(5, Default::default);"}
+{"question": "What is the 'Vec::into_iter' method?", "answer": "Consumes the vector and returns an iterator. Example: for item in vec.into_iter() { ... }"}
+{"question": "How to use the 'Vec::iter_mut' method?", "answer": "Returns an iterator over mutable references. Example: for item in vec.iter_mut() { ... }"}
+{"question": "What is the 'Vec::into_boxed_slice' method?", "answer": "Converts a Vec to a Box<[T]>. Example: let boxed = vec.into_boxed_slice();"}
+{"question": "What is the keyword to declare a variable in Rust?", "answer": "let"}
+{"question": "How to declare a mutable variable?", "answer": "let mut x = 5;"}
+{"question": "What is the default integer type in Rust?", "answer": "i32"}
+{"question": "What is the difference between 'let' and 'const'?", "answer": "'let' declares a variable, 'const' defines a compile-time constant."}
+{"question": "How to define a function in Rust?", "answer": "fn add(a: i32, b: i32) -> i32 { a + b }"}
+{"question": "What is the purpose of the 'match' expression?", "answer": "To compare a value against patterns and execute code based on the matching pattern."}
+{"question": "How to create a struct in Rust?", "answer": "struct Point { x: i32, y: i32 }"}
+{"question": "What is the difference between struct and tuple struct?", "answer": "A regular struct has named fields; a tuple struct has unnamed fields."}
+{"question": "How to implement a method on a struct?", "answer": "Use 'impl' block: impl Point { fn new() -> Self { ... } }"}
+{"question": "What is the 'Option' type used for?", "answer": "To represent optional values (Some or None)."}
+{"question": "How to create an enum in Rust?", "answer": "enum Color { Red, Green, Blue }"}
+{"question": "What is the 'Result' type used for?", "answer": "To handle success or error outcomes (Ok or Err)."}
+{"question": "How to use a slice in Rust?", "answer": "Use &str or &[T] to reference a portion of a collection."}
+{"question": "What is the 'Vec' type?", "answer": "A growable array type for dynamic data."}
+{"question": "How to handle string concatenation in Rust?", "answer": "Use the 'format!' macro or '+'. Example: let s = format!(\"{} {}\", \"hello\", \"world\");"}
+{"question": "What is the 'Box' type used for?", "answer": "To allocate data on the heap."}
+{"question": "How to use a reference in Rust?", "answer": "Use & to borrow a value without taking ownership."}
+{"question": "What is the 'lifetime' annotation?", "answer": "Specifies how long a reference is valid to prevent dangling references."}
+{"question": "How to use the 'if let' construct?", "answer": "To handle a single pattern match case: if let Some(x) = value { ... }"}
+{"question": "What is the 'for' loop syntax in Rust?", "answer": "for i in 0..5 { ... } or for i in 0..=5 { ... }"}
+{"question": "What is a trait in Rust?", "answer": "A trait defines shared behavior for types."}
+{"question": "How to define a trait?", "answer": "trait MyTrait { fn method(&self); }"}
+{"question": "What is the 'derive' attribute used for?", "answer": "To automatically implement common traits like Debug, Clone."}
+{"question": "How to use generics in Rust?", "answer": "fn generic<T>(x: T) -> T { x }"}
+{"question": "What is the 'where' clause in generics?", "answer": "To specify trait bounds for generic parameters."}
+{"question": "How to implement a trait for a type?", "answer": "impl MyTrait for i32 { fn method(&self) { ... } }"}
+{"question": "What is the 'match' arm syntax?", "answer": "Each arm is a pattern followed by => and code: match x { 1 => \"one\", _ => \"other\" }"}
+{"question": "How to use the 'iter()' method?", "answer": "To create an iterator over a collection: for item in vec.iter() { ... }"}
+{"question": "What is the 'map' function in iterators?", "answer": "Transforms each element: iter.map(|x| x * 2)"}
+{"question": "How to use the 'filter' function?", "answer": "Selects elements that match a predicate: iter.filter(|x| *x > 0)"}
+{"question": "What is the 'collect' method?", "answer": "Converts an iterator into a collection: iter.collect::<Vec<_>>()"}
+{"question": "How to use the 'Option::unwrap()' method?", "answer": "Extracts the value or panics: Some(5).unwrap()"}
+{"question": "What is the 'Result::expect()' method?", "answer": "Extracts the value or panics with a message: Ok(5).expect(\"error\")"}
+{"question": "How to use the 'panic!' macro?", "answer": "Triggers a runtime panic: panic!(\"message\")"}
+{"question": "What is the 'unwrap_or' method for Option?", "answer": "Returns the value or a default: Some(5).unwrap_or(0)"}
+{"question": "How to use the 'and_then' method for Option?", "answer": "Chains operations: Some(5).and_then(|x| Some(x + 1))"}
+{"question": "What is the 'Result::map_err()' method?", "answer": "Transforms an Err value: Ok(5).map_err(|e| e.to_string())"}
+{"question": "How to use the 'Box<dyn Trait>' syntax?", "answer": "For dynamic dispatch with trait objects: let obj: Box<dyn MyTrait> = Box::new(MyStruct {});"}
+{"question": "What is the 'self' keyword in methods?", "answer": "Refers to the current instance of a type: fn method(&self) { ... }"}
+{"question": "How to use the 'as' keyword for type casting?", "answer": "Converts between types: let x: i32 = 5 as i32;"}
+{"question": "How to create a new thread in Rust?", "answer": "Use std::thread::spawn(|| { ... });"}
+{"question": "What is the 'join' method for threads?", "answer": "Waits for a thread to finish: handle.join().unwrap()"}
+{"question": "What is a Mutex in Rust?", "answer": "A mutual exclusion lock for thread-safe data access."}
+{"question": "How to use a Mutex?", "answer": "Use std::sync::Mutex and .lock() method: let data = mutex.lock().unwrap();"}
+{"question": "What is a RwLock in Rust?", "answer": "A read-write lock that allows multiple readers or one writer."}
+{"question": "How to use channels in Rust?", "answer": "Use std::sync::mpsc::channel() and send/receive: let (tx, rx) = channel(); tx.send(5); rx.recv()"}
+{"question": "What is the 'Arc' type used for?", "answer": "Thread-safe reference counting: std::sync::Arc<T>"}
+{"question": "How to share data between threads using Arc?", "answer": "Wrap data in Arc and clone it for each thread: let data = Arc::new(5);"}
+{"question": "What is the 'async' keyword used for?", "answer": "Declares an asynchronous function: async fn my_async() {}"}
+{"question": "How to run an async function in Rust?", "answer": "Use tokio::runtime::Runtime or async_std::task::block_on."}
+{"question": "What is the 'await' operator?", "answer": "Waits for an async task to complete: let result = my_async().await;"}
+{"question": "How to use 'Send' and 'Sync' traits?", "answer": "'Send' allows ownership across threads; 'Sync' allows shared access."}
+{"question": "What is a 'RwLock' used for?", "answer": "To allow multiple readers or exclusive writers."}
+{"question": "How to create a static variable in Rust?", "answer": "Use 'static' keyword: static X: i32 = 5;"}
+{"question": "What is the 'use' keyword for?", "answer": "To bring modules into scope: use std::collections::HashMap;"}
+{"question": "How to handle panics in Rust?", "answer": "Use 'panic!' or 'unwrap()' to trigger a panic; 'catch_unwind' for recovery."}
+{"question": "What is the 'drop' trait?", "answer": "Allows custom cleanup when a value goes out of scope."}
+{"question": "How to use the 'as_ref' method?", "answer": "Converts a value to a reference: Some(5).as_ref()"}
+{"question": "What is the 'Cow' type?", "answer": "A clone-on-write smart pointer: std::borrow::Cow."}
+{"question": "How to use the 'try' macro?", "answer": "For error propagation in async code: let result = try!(my_result);"}
+{"question": "What is the 'lifetime' elision rules?", "answer": "Rust infers lifetimes in common cases, like when a function returns a reference."}
+{"question": "How to use the 'impl Trait' syntax?", "answer": "To return a type that implements a trait without naming it: fn my_func() -> impl MyTrait { ... }"}
+{"question": "What is the 'const' keyword used for?", "answer": "To define compile-time constants: const PI: f64 = 3.14;"}
+{"question": "How to use the 'match' expression with guards?", "answer": "Add 'if' conditions: match x { Some(y) if y > 0 => ... }"}
+{"question": "What is the 'derive' macro for?", "answer": "Automatically generates implementations for traits like PartialEq."}
+{"question": "How to use the 'default' trait?", "answer": "Provides a default value: impl Default for MyStruct { fn default() -> Self { ... } }"}
+{"question": "What is the 'From' trait?", "answer": "Converts from another type: impl From<i32> for MyType { ... }"}
+{"question": "How to use the 'Into' trait?", "answer": "Converts into another type: let s: String = \"hello\".into();"}
+{"question": "What is the 'Iterator' trait?", "answer": "Defines methods for iterating over elements: next(), size_hint(), etc."}
+{"question": "How to use the 'into_iter()' method?", "answer": "Consumes the collection and returns an iterator: for item in vec.into_iter() { ... }"}
+{"question": "What is the 'iter()' method?", "answer": "Returns an iterator over references: for item in vec.iter() { ... }"}
+{"question": "How to use the 'into_iter' vs 'iter'?", "answer": "'into_iter' consumes the collection; 'iter' borrows it."}
+{"question": "What is the 'cloned' method for iterators?", "answer": "Creates an iterator over clones of elements: iter.cloned()"}
+{"question": "How to use the 'copied' method for iterators?", "answer": "Creates an iterator over copies of elements: iter.copied()"}
+{"question": "What is the 'zip' method for iterators?", "answer": "Combines two iterators into a single one: iter1.zip(iter2)"}
+{"question": "How to use the 'filter_map' method?", "answer": "Filters and maps in one step: iter.filter_map(|x| if x > 0 { Some(x) } else { None })"}
+{"question": "What is the 'fold' method for iterators?", "answer": "Accumulates values: iter.fold(0, |acc, x| acc + x)"}
+{"question": "How to use the 'try_fold' method?", "answer": "For error-prone accumulation: iter.try_fold(0, |acc, x| Ok(acc + x))"}
+{"question": "What is the 'try_for_each' method?", "answer": "Executes a function for each element, stopping on error."}
+{"question": "How to use the 'try_map' method?", "answer": "Maps elements with error handling: iter.try_map(|x| Ok(x * 2))"}
+{"question": "What is the 'Future' trait?", "answer": "Represents asynchronous computations."}
+{"question": "How to use 'tokio::spawn'?", "answer": "Spawns an async task: tokio::spawn(async { ... })"}
+{"question": "How do you declare a variable in Rust?", "answer": "Use `let x = 5;` for immutable variables or `let mut x = 5;` for mutable ones.\n```rust\nlet x = 5;\nlet mut y = 10;\n```"}
+{"question": "What is the difference between `let` and `const` in Rust?", "answer": "`let` declares a variable with optional mutability, while `const` defines a compile-time constant.\n```rust\nconst PI: f64 = 3.14;\nlet x = 5;\n```"}
+{"question": "How to handle panics in Rust?", "answer": "Use `panic!()` macro. Example:\n```rust\npanic!(\"error message\");\n```"}
+{"question": "What is the purpose of `match` in Rust?", "answer": "To compare a value against patterns and execute code based on the matching pattern."}
+{"question": "How to create a struct in Rust?", "answer": "Use `struct` keyword. Example:\n```rust\nstruct Point { x: i32, y: i32 }\n```"}
+{"question": "What is the `Option` enum used for?", "answer": "To represent optional values (Some(T) or None)."}
+{"question": "How to implement a trait for a type?", "answer": "Use `impl Trait for Type`. Example:\n```rust\nimpl Display for Point {\n    fn fmt(&self, f: &mut Formatter) -> Result {\n        write!(f, \"({}, {})\", self.x, self.y)\n    }\n}\n```"}
+{"question": "What is the `Result` type in Rust?", "answer": "A generic enum for success (Ok(T)) or error (Err(E)) handling."}
+{"question": "How to borrow a reference in Rust?", "answer": "Use `&` for immutable or `&mut` for mutable references.\n```rust\nlet s = String::from(\"hello\");\nlet s_ref = &s;\nlet s_mut_ref = &mut s;\n```"}
+{"question": "What is the `Box` type used for?", "answer": "To allocate data on the heap and own it.\n```rust\nlet b = Box::new(5);\n```"}
+{"question": "How to create a thread in Rust?", "answer": "Use `std::thread::spawn`. Example:\n```rust\nstd::thread::spawn(|| {\n    println!(\"Hello from thread\");\n});\n```"}
+{"question": "What is the `RwLock` type used for?", "answer": "To allow multiple readers or one writer at a time.\n```rust\nuse std::sync::RwLock;\nlet data = RwLock::new(5);\n```"}
+{"question": "How to handle multiple ownership?", "answer": "Use `Arc<T>` (Atomic Reference Counted) for thread-safe shared ownership.\n```rust\nuse std::sync::Arc;\nlet data = Arc::new(5);\n```"}
+{"question": "What is the `?` operator in Rust?", "answer": "Shortens error propagation in functions returning `Result` or `Option`."}
+{"question": "How to define a function in Rust?", "answer": "Use `fn function_name() { ... }`. Example:\n```rust\nfn add(a: i32, b: i32) -> i32 {\n    a + b\n}\n```"}
+{"question": "What is the `#[derive(Debug)]` attribute for?", "answer": "Enables the `Debug` trait for a struct, allowing it to be printed with `{:?}`."}
+{"question": "How to create a slice in Rust?", "answer": "Use `&array[start..end]`. Example:\n```rust\nlet arr = [1,2,3,4];\nlet slice = &arr[1..3];\n```"}
+{"question": "What is the `use` keyword used for?", "answer": "To bring items into scope. Example:\n```rust\nuse std::collections::HashMap;\n```"}
+{"question": "How to handle type inference in Rust?", "answer": "Rust infers types from context. Example:\n```rust\nlet x = 5; // inferred as i32\n```"}
+{"question": "What is the `lifetime` system in Rust?", "answer": "Ensures references are valid for the correct duration, preventing dangling references."}
+{"question": "How to create a vector in Rust?", "answer": "Use `vec![1,2,3]` or `Vec::new()`. Example:\n```rust\nlet v = vec![1,2,3];\n```"}
+{"question": "What is the `enum` type in Rust?", "answer": "A type that can have multiple named variants. Example:\n```rust\nenum Color { Red, Green, Blue }\n```"}
+{"question": "How to use pattern matching with `match`?", "answer": "Match against values, enums, or destructured data. Example:\n```rust\nmatch x {\n    1 => println!(\"one\"),\n    _ => println!(\"other\"),\n}\n```"}
+{"question": "What is the `Box::new()` function?", "answer": "Allocates a value on the heap and returns a `Box<T>` pointer."}
+{"question": "How to implement a method for a struct?", "answer": "Use `impl` block. Example:\n```rust\nimpl Point {\n    fn new(x: i32, y: i32) -> Self {\n        Point { x, y }\n    }\n}\n```"}
+{"question": "What is the `Arc` type used for?", "answer": "Thread-safe shared ownership with reference counting."}
+{"question": "How to create a channel for communication between threads?", "answer": "Use `std::sync::mpsc::channel()`. Example:\n```rust\nuse std::sync::mpsc;\nlet (tx, rx) = mpsc::channel();\n```"}
+{"question": "What is the purpose of `unsafe` blocks?", "answer": "To bypass Rust's safety checks for low-level operations."}
+{"question": "How to handle string concatenation in Rust?", "answer": "Use `+` operator or `format!()` macro. Example:\n```rust\nlet s = \"hello\".to_string() + \" world\";\n```"}
+{"question": "What is the `Option::unwrap()` method?", "answer": "Returns the value inside `Some(T)` or panics if `None`."}
+{"question": "How to define a constant in Rust?", "answer": "Use `const` keyword. Example:\n```rust\nconst MAX_SPEED: u8 = 100;\n```"}
+{"question": "What is the `Result::ok()` method?", "answer": "Extracts the `Ok(T)` value or returns `None` if `Err(E)`."}
+{"question": "How to use the `if let` construct?", "answer": "Matches a single pattern and ignores others. Example:\n```rust\nif let Some(x) = value {\n    println!(\"Found: {}\", x);\n}\n```"}
+{"question": "What is the `Rust` ownership system?", "answer": "Controls memory management via unique ownership and strict borrowing rules."}
+{"question": "How to create a tuple in Rust?", "answer": "Use parentheses. Example:\n```rust\nlet t = (1, \"hello\");\n```"}
+{"question": "What is the `Box<T>` type?", "answer": "A smart pointer for heap-allocated data."}
+{"question": "How to use the `while let` loop?", "answer": "Continuously matches a pattern. Example:\n```rust\nwhile let Some(x) = rx.recv() {\n    println!(\"Received: {}\", x);\n}\n```"}
+{"question": "What is the `Rust` borrow checker?", "answer": "Enforces borrowing rules at compile time to prevent data races."}
+{"question": "How to create a static variable in Rust?", "answer": "Use `static` keyword. Example:\n```rust\nstatic PI: f64 = 3.14;\n```"}
+{"question": "What is the `Rust` `pub` keyword?", "answer": "Makes items public for external access."}
+{"question": "How to use the `?` operator in a function?", "answer": "Propagates errors from a `Result` or `Option`.\n```rust\nfn read_file() -> Result<String, std::io::Error> {\n    let s = std::fs::read_to_string(\"file.txt\")?;\n    Ok(s)\n}\n```"}
+{"question": "What is the `Rust` `self` keyword?", "answer": "Refers to the current instance in method implementations."}
+{"question": "How to create a reference to a slice?", "answer": "Use `&[T]`. Example:\n```rust\nlet arr = [1,2,3];\nlet slice: &[i32] = &arr;\n```"}
+{"question": "What is the `Rust` `as` operator?", "answer": "Converts between types. Example:\n```rust\nlet x: i32 = 5.0 as i32;\n```"}
+{"question": "How to use the `match` arm for a range?", "answer": "Use `..=` for inclusive ranges. Example:\n```rust\nmatch x {\n    1..=5 => println!(\"in range\"),\n    _ => println!(\"out of range\"),\n}\n```"}
+{"question": "What is the `Rust` `drop` trait?", "answer": "Allows custom cleanup logic when a value goes out of scope."}
+{"question": "How to create a thread-safe shared mutable state?", "answer": "Use `Mutex<T>` or `RwLock<T>`.\n```rust\nuse std::sync::{Arc, Mutex};\nlet data = Arc::new(Mutex::new(5));\n```"}
+{"question": "What is the `Rust` `fn` keyword?", "answer": "Declares a function."}
+{"question": "How to use the `where` clause in generics?", "answer": "Specifies trait bounds. Example:\n```rust\nfn foo<T: Display + Clone>(x: T) where T: Debug {\n    // ...\n}\n```"}
+{"question": "What is the `Rust` `use` statement?", "answer": "Imports items into scope."}
+{"question": "How to handle a `Result` type?", "answer": "Use `match` or `if let` to handle `Ok` or `Err`."}
+{"question": "What is the `Rust` `self` in trait methods?", "answer": "Refers to the implementing type."}
+{"question": "How to create a closure in Rust?", "answer": "Use `|args| body`. Example:\n```rust\nlet add = |a: i32, b: i32| a + b;\n```"}
+{"question": "What is the `Rust` `as_ref()` method?", "answer": "Converts a `Box<T>` to a `&T`."}
+{"question": "How to use the `Rust` `?` operator in `main`?", "answer": "`main` can return `Result` or `Option` and use `?` for error handling."}
+{"question": "What is the `Rust` `#[derive(Clone)]` attribute?", "answer": "Enables the `Clone` trait for a type."}
+{"question": "How to create a `Vec` with initial capacity?", "answer": "Use `Vec::with_capacity(n)`. Example:\n```rust\nlet v = Vec::with_capacity(10);\n```"}
+{"question": "What is the `Rust` `as_mut()` method?", "answer": "Converts a `Box<T>` to a `&mut T`."}
+{"question": "How to use the `Rust` `if let` with `Option`?", "answer": "Checks for `Some(T)` and ignores `None`. Example:\n```rust\nif let Some(x) = opt {\n    // handle x\n}\n```"}
+{"question": "What is the `Rust` `pub use` statement?", "answer": "Reexports an item under a different name."}
+{"question": "How to implement a trait for multiple types?", "answer": "Use `impl Trait for Type` for each type."}
+{"question": "What is the `Rust` `Box::leak()` function?", "answer": "Leaks a `Box<T>`, returning a `&'static T`."}
+{"question": "How to create a `HashMap` in Rust?", "answer": "Use `HashMap::new()` or `hashmap![]` macro.\n```rust\nuse std::collections::HashMap;\nlet mut map = HashMap::new();\n```"}
+{"question": "What is the `Rust` `#[derive(PartialEq)]` attribute?", "answer": "Enables equality comparisons for a type."}
+{"question": "How to use the `Rust` `while` loop?", "answer": "Executes code while a condition is true. Example:\n```rust\nlet mut i = 0;\nwhile i < 5 {\n    println!(\"{}\", i);\n    i += 1;\n}\n```"}
+{"question": "What is the `Rust` `struct` field syntax?", "answer": "`struct Name { field: Type }`."}
+{"question": "How to create a `VecDeque` in Rust?", "answer": "Use `VecDeque::new()` from `std::collections`.\n```rust\nuse std::collections::VecDeque;\nlet mut dq = VecDeque::new();\n```"}
+{"question": "What is the `Rust` `#[derive(Debug)]` attribute?", "answer": "Enables printing with `{:?}` format specifier."}
+{"question": "How to handle a `Result` with `unwrap_or`?", "answer": "Provides a default value on `Err`. Example:\n```rust\nlet x = result.unwrap_or(0);\n```"}
+{"question": "What is the `Rust` `?` operator in `main`?", "answer": "Allows error propagation in `main` function."}
+{"question": "How to create a `Cow` type in Rust?", "answer": "Use `Cow::Borrowed` or `Cow::Owned` for copy-on-write.\n```rust\nuse std::borrow::Cow;\nlet s = Cow::Borrowed(\"hello\");\n```"}
+{"question": "What is the `Rust` `#[derive(Default)]` attribute?", "answer": "Provides a default value for a type."}
+{"question": "How to use the `Rust` `match` with `ref`?", "answer": "Borrows the value instead of moving it. Example:\n```rust\nmatch x {\n    ref y => println!(\"{}\", y),\n}\n```"}
+{"question": "What is the `Rust` `#[derive(Clone)]` attribute?", "answer": "Enables cloning of a type."}
+{"question": "How to create a `Vec` with initial elements?", "answer": "Use `vec![1, 2, 3]` or `Vec::from([1,2,3])`.\n```rust\nlet v = vec![1, 2, 3];\n```"}
+{"question": "What is the `Rust` `#[derive(PartialOrd)]` attribute?", "answer": "Enables partial ordering comparisons for a type."}
+{"question": "How to use the `Rust` `if let` with `Result`?", "answer": "Checks for `Ok(T)` and ignores `Err(E)`. Example:\n```rust\nif let Ok(x) = result {\n    // handle x\n}\n```"}
+{"question": "What is the `Rust` `#[derive(Ord)]` attribute?", "answer": "Enables total ordering comparisons for a type."}
+{"question": "How to create a `BTreeMap` in Rust?", "answer": "Use `BTreeMap::new()` from `std::collections`.\n```rust\nuse std::collections::BTreeMap;\nlet mut map = BTreeMap::new();\n```"}
+{"question": "What is the `Rust` `#[derive(Eq)]` attribute?", "answer": "Enables equality comparisons for a type."}
+{"question": "How to use the `Rust` `match` with `ref mut`?", "answer": "Borrows and allows mutation. Example:\n```rust\nmatch x {\n    ref mut y => *y = 5,\n}\n```"}
+{"question": "What is the `Rust` `#[derive(Hash)]` attribute?", "answer": "Enables hashing for a type."}
+{"question": "How to create a `LinkedList` in Rust?", "answer": "Use `LinkedList::new()` from `std::collections`.\n```rust\nuse std::collections::LinkedList;\nlet mut list = LinkedList::new();\n```"}
+{"question": "What is the `Rust` `#[derive(Deserialize)]` attribute?", "answer": "Enables deserialization with Serde."}
+{"question": "How to create a `BinaryHeap` in Rust?", "answer": "Use `BinaryHeap::new()` from `std::collections`.\n```rust\nuse std::collections::BinaryHeap;\nlet mut heap = BinaryHeap::new();\n```"}
+{"question": "What is the `Rust` `#[derive(Serialize)]` attribute?", "answer": "Enables serialization with Serde."}
+{"question": "How to use the `Rust` `?` operator in `?`-returning functions?", "answer": "Propagates errors automatically."}
+{"question": "What is the `Rust` `#[derive(From)]` attribute?", "answer": "Enables conversion between types using `From` trait."}
+{"question": "How to create a `HashSet` in Rust?", "answer": "Use `HashSet::new()` from `std::collections`.\n```rust\nuse std::collections::HashSet;\nlet mut set = HashSet::new();\n```"}
+{"question": "What is the `Rust` `#[derive(Ord)]` trait?", "answer": "Provides total ordering for a type."}
+{"question": "How to use the `Rust` `match` with `..`?", "answer": "Matches a range of values. Example:\n```rust\nmatch x {\n    1..=5 => println!(\"in range\"),\n    _ => println!(\"out of range\"),\n}\n```"}
+{"question": "What is the `Rust` `#[derive(PartialEq)]` trait?", "answer": "Provides partial equality comparisons for a type."}
+{"question": "How to create a `Vec` with repeated elements?", "answer": "Use `vec![value; count]`. Example:\n```rust\nlet v = vec![0; 5]; // [0,0,0,0,0]\n```"}
+{"question": "What is the `Rust` `#[derive(Debug)]` trait?", "answer": "Allows printing with `dbg!()` or `println!` using `:?` format."}
+{"question": "How to use the `Rust` `match` with `ref` and `mut`?", "answer": "Borrows and allows mutation. Example:\n```rust\nmatch x {\n    ref mut y => *y = 5,\n}\n```"}
+{"question": "What is the `Rust` `#[derive(Clone)]` trait?", "answer": "Allows cloning of a type."}
+{"question": "How to create a `HashMap` with initial key-value pairs?", "answer": "Use `hashmap![]` macro. Example:\n```rust\nuse std::collections::hashmap;\nlet map = hashmap!{\n    \"key\" => \"value\"\n};\n```"}
+{"question": "What is the `Rust` `#[derive(Ord)]` trait?", "answer": "Provides total ordering for a type."}
+{"question": "How to use the `Rust` `match` with `@` pattern?", "answer": "Binds a value to a variable. Example:\n```rust\nmatch x {\n    y @ 1..=5 => println!(\"range: {}\", y),\n    _ => println!(\"other\"),\n}\n```"}
+{"question": "What is the `Rust` `#[derive(Eq)]` trait?", "answer": "Provides equality comparisons for a type."}
+{"question": "How to create a `BTreeSet` in Rust?", "answer": "Use `BTreeSet::new()` from `std::collections`.\n```rust\nuse std::collections::BTreeSet;\nlet mut set = BTreeSet::new();\n```"}
+{"question": "What is the `Rust` `#[derive(Hash)]` trait?", "answer": "Enables hashing for a type."}
+{"question": "How to use the `Rust` `match` with `|` for multiple patterns?", "answer": "Matches any of the specified patterns. Example:\n```rust\nmatch x {\n    1 | 2 => println!(\"one or two\"),\n    _ => println!(\"other\"),\n}\n```"}
+{"question": "What is the `Rust` `#[derive(From)]` trait?", "answer": "Enables conversion between types using `From`."}
+{"question": "How to create a `BinaryHeap` with custom ordering?", "answer": "Implement `Ord` trait for the type."}
