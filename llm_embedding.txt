@@ -1,9 +1,9 @@
 llm:
 "HuggingFaceTB/SmolLM3-3B"
-"HuggingFaceTB/SmolLM2-135M"
+"HuggingFaceTB/SmolLM2-135M" (lora)
 "HuggingFaceTB/SmolLM2-135M-Instruct"
 "HuggingFaceTB/SmolLM2-1.7B-Instruct"
-"Qwen/Qwen3-0.6B"
+"Qwen/Qwen3-0.6B" (lora)
 
 embedding:
 "BAAI/bge-small-en"
