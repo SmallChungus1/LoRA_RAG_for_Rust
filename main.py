@@ -13,7 +13,7 @@ import argparse
 import os
 
 class course_rag():
-    def __init__(self, llm_model_name = "Qwen/Qwen3-0.6B"
+    def __init__(self, llm_model_name = "./qwen3-0.6b-Rust-FT"
 , embedding_model_name = "BAAI/bge-small-en", persist_directory = "./chroma_langchain_db", max_tokens = 200):
         
         self.persist_directory = persist_directory

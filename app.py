@@ -10,7 +10,7 @@ if 'course_rag_instance' not in se_state:
     se_state.course_rag_instance.add_pdf(rag_docs)
     print("init course_rag instance and populated vector db")
 
-st.title("RAG Powered LLM for your coursework")
+st.title("RAG Powered LLM for your questions about Rust")
 
 user_query = st.text_input("Enter your question here:")
 
