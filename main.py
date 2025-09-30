@@ -51,7 +51,7 @@ class course_rag():
             device_map="auto",
             torch_dtype=dtype,
 
-        ).to(device_name)
+        )
         hf_pipe = pipeline("text-generation", model=model, 
                            tokenizer=tokenizer, 
                            max_new_tokens=max_tokens, 
