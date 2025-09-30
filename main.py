@@ -36,7 +36,7 @@ class course_rag():
             embedding_function=embedding_model,
             persist_directory=self.persist_directory,  # Where to save data locally, remove if not necessary
         )
-        self.vector_store.reset_collection()
+        #self.vector_store.reset_collection()
 
         # Retriever (MMR reduces redundancy)
         self.retriever = self.vector_store.as_retriever(
@@ -50,8 +50,18 @@ class course_rag():
             llm_model_name,
             device_map="auto",
             torch_dtype=dtype,
+
         ).to(device_name)
-        hf_pipe = pipeline("text-generation", model=model, tokenizer=tokenizer, max_new_tokens=max_tokens, use_fast=True, return_full_text=False)
+        hf_pipe = pipeline("text-generation", model=model, 
+                           tokenizer=tokenizer, 
+                           max_new_tokens=max_tokens, 
+                           use_fast=True, 
+                           return_full_text=False,
+                           do_sample=False,
+                           temperature=0.0,
+                           top_p=1.0,
+                           pad_token_id=tokenizer.eos_token_id)
+        
         llm = HuggingFacePipeline(pipeline=hf_pipe)
         
         #chain setup
@@ -101,11 +111,15 @@ class course_rag():
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Course RAG")
     parser.add_argument("--q", type=str, help="Question to ask")
+    parser.add_argument("--doc", type=str, required=False, help="folder containing your grounding documents")
     args = parser.parse_args() 
-    rag_doc_folder = "./rag_docs"
-
+    rag_docs_folder = args.doc
     course_rag_instance = course_rag()
-    rag_docs = [os.path.join(rag_doc_folder, file_path) for file_path in os.listdir(rag_doc_folder)]
-    course_rag_instance.add_pdf(rag_docs)
+
+    if args.doc:
+        print(f"Adding documents of {os.path.basename(rag_docs_folder)} to vector DB")
+        rag_docs = [os.path.join(rag_docs_folder, file_path) for file_path in os.listdir(rag_docs_folder)]
+        course_rag_instance.add_pdf(rag_docs)
+
     response = course_rag_instance.ask(args.q)
     print(response)
