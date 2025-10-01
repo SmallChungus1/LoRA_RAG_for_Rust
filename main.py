@@ -11,6 +11,7 @@ from langchain_core.runnables import RunnablePassthrough
 from langchain.schema.output_parser import StrOutputParser
 import argparse
 import os
+from langchain_community.llms import LlamaCpp
 
 class course_rag():
     def __init__(self, llm_model_name = "./qwen3-0.6b-Rust-FT"
@@ -52,18 +53,31 @@ class course_rag():
             torch_dtype=dtype,
 
         )
-        hf_pipe = pipeline("text-generation", model=model, 
-                           tokenizer=tokenizer, 
-                           max_new_tokens=max_tokens, 
-                           use_fast=True, 
-                           return_full_text=False,
-                           do_sample=False,
-                           temperature=0.0,
-                           top_p=1.0,
-                           pad_token_id=tokenizer.eos_token_id)
+
+        ###Option 1: use locally hosted, finetuned lora merged HF version model
+        # hf_pipe = pipeline("text-generation", model=model, 
+        #                    tokenizer=tokenizer, 
+        #                    max_new_tokens=max_tokens, 
+        #                    use_fast=True, 
+        #                    return_full_text=False,
+        #                    do_sample=False,
+        #                    temperature=0.0,
+        #                    top_p=1.0,
+        #                    pad_token_id=tokenizer.eos_token_id)
         
-        llm = HuggingFacePipeline(pipeline=hf_pipe)
+        # llm = HuggingFacePipeline(pipeline=hf_pipe)
         
+        ###Option 2: use locally hosted, gguf version of the model
+        llm = LlamaCpp(
+            model_path="./qwen3_06b_Q4_K_M_Rust_FT.gguf",
+            n_ctx=4096,
+            n_threads=os.cpu_count(),
+            n_batch=512,
+            temperature=0.0,
+            max_tokens=200,
+        )
+
+        ###
         #chain setup
         self.RAG_PROMPT = PromptTemplate.from_template(
             "You are a college computer science teacher.\n"
