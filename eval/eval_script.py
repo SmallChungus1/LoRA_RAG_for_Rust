@@ -16,7 +16,7 @@ BASE_MODEL_FILE = "*Q4_K_M.gguf" # Pattern to match q4_k_m
 
 GGUF_FT_MODEL_PATH = os.path.abspath("qwen3_06b_Q4_K_M_Rust_FT.gguf")
 
-DATASET_PATH = os.path.abspath("data_gen/rust_qa_28_bench.jsonl")
+DATASET_PATH = os.path.abspath("data_gen/rust_qa_500_bench.jsonl")
 OUTPUT_PATH = os.path.abspath("eval/eval_results.json")
 
 JUDGE_MODEL_REPO = "unsloth/Qwen3-4B-Instruct-2507-GGUF"
