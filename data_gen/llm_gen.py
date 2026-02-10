@@ -12,9 +12,9 @@ MODEL   = os.getenv("OPENROUTER_MODEL")  # e.g., "openai/gpt-4o-mini" or your pi
 if not API_KEY or not MODEL:
     raise SystemExit("Set OPENROUTER_API_KEY and OPENROUTER_MODEL in your env")
 
-OUT     = "./data_gen/rust_qa_dataset_5k.jsonl"
+OUT     = "./data_gen/rust_qa_500_bench.jsonl"
 MODEL_MAX_TOKENS = 30000  # adjust to your model’s limit
-TOTAL   = 5000           # total pairs to generate
+TOTAL   = 500           # total pairs to generate
 BATCH   = 50            # pairs per request
 TEMP    = 0.4
 TIMEOUT = 60

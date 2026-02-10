@@ -3,3 +3,5 @@ rag_docs/*
 .env
 qwen3-0.6b-Rust-FT/*
 *.gguf
+__pycache__/
+*.pyc
